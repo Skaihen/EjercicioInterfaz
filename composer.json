@@ -1,6 +1,7 @@
 {
     "require": {
-        "php": "^8"
+        "php": "^8",
+        "symfony/yaml": "^6.1"
     },
     "require-dev": {
         "php": "^8",
@@ -8,14 +9,12 @@
     },
     "autoload": {
         "psr-4": {
-            "PHPUnit\\": "vendor/phpunit/phpunit/src/",
-            "configfile\\": "src/clases/"
+            "ITEC\\DAW\\INTERFAZ\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "PHPUnit\\": "vendor/phpunit/phpunit/src/",
-            "configfile\\": "src/clases/"
+            "ITEC\\DAW\\INTERFAZ\\": "src/"
         }
     }
 }
