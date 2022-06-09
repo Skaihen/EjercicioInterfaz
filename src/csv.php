@@ -18,6 +18,10 @@ class csv extends genericFile implements iconfig
         }
     }
 
+    private function array2csv(array $array):string{
+        return implode(",",$array);
+    }
+
     public static function createCSV(string $fileName, string $content, bool $borrarFinal)
     {
         return new csv($fileName, $content, $borrarFinal);
@@ -26,19 +30,19 @@ class csv extends genericFile implements iconfig
     public function addVars($attribute, $value)
     {
         $this->dotcsv[$attribute] = $value;
-        $this->writeFile(str_replace("=", ",", http_build_query($this->dotcsv, '', '\n')));
+        $this->writeFile($this->array2csv($this->dotcsv));
     }
 
     public function removeVars(string $attribute)
     {
         unset($this->dotcsv[$attribute]);
-        $this->writeFile(str_replace("=", ",", http_build_query($this->dotcsv, '', '\n')));
+        $this->writeFile($this->array2csv($this->dotcsv));
     }
 
     public function modifyVars(string $attribute, $value)
     {
         $this->dotcsv[$attribute] = $value;
-        $this->writeFile(str_replace("=", ",", http_build_query($this->dotcsv, '', '\n')));
+        $this->writeFile($this->array2csv($this->dotcsv));
     }
 
     public function readVar(string $attribute): string
