@@ -6,6 +6,7 @@ class genericFile
 {
     private string $fileName;
     private bool $borrarFinal;
+    private string $content;
     private $archivo;
 
     public function __construct(string $fileName, string $content, bool $borrarFinal)
@@ -13,13 +14,11 @@ class genericFile
         $this->fileName = $fileName;
         $this->content = $content;
         $this->borrarFinal = $borrarFinal;
-        $this->archivo = fopen($fileName, "w+");
-        $this->writeFile($content);
+        \file_put_contents($fileName, $content);
     }
 
     public function __destruct()
     {
-        fclose($this->archivo);
         if ($this->borrarFinal) {
             unlink($this->fileName);
         }
@@ -38,6 +37,6 @@ class genericFile
 
     public function writeFile(string $content)
     {
-        \fwrite($this->archivo, $content);
+        file_put_contents($this->fileName, $content);
     }
 }
